@@ -26,7 +26,12 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.add-button {
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.add-button, .signout-button {
   background-color: #1976d2;
   color: white;
   border: none;
@@ -38,8 +43,16 @@ body {
   transition: background-color 0.2s;
 }
 
+.signout-button {
+  background-color: #dc2626;
+}
+
 .add-button:hover {
   background-color: #1565c0;
+}
+
+.signout-button:hover {
+  background-color: #b91c1c;
 }
 
 .borrowers-table {
@@ -180,8 +193,48 @@ h1 {
   background-color: #1565c0;
 }
 
-.error-message {
+.error-message, .auth-error-message {
   color: #dc2626;
   font-size: 0.875rem;
   margin-top: 0.5rem;
+}
+
+/* Authentication styles */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.auth-form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form h2 {
+  color: #1976d2;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.auth-switch a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
 }
