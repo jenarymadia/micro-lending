@@ -9,7 +9,8 @@ import {
   LayoutDashboard,
   Menu,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  UserSquare2
 } from 'lucide-react';
 
 interface LayoutProps {
@@ -41,6 +42,7 @@ export function Layout({ children }: LayoutProps) {
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+    { name: 'Borrowers', href: '/borrowers', icon: UserSquare2 },
     { name: 'Team', href: '/team', icon: Users },
     { name: 'Settings', href: '/settings', icon: Settings },
   ];
