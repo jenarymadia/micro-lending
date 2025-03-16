@@ -5,6 +5,8 @@ import { AuthForm } from './components/AuthForm';
 import { Dashboard } from './components/Dashboard';
 import { Team } from './pages/Team';
 import { Settings } from './pages/Settings';
+import { Borrowers } from './pages/Borrowers';
+import { LandingPage } from './pages/LandingPage';
 import { supabase } from './lib/supabase';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -29,6 +31,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
 function AuthRoute() {
   const { user, loading } = useAuthStore();
   const location = useLocation();
+  const from = location.state?.from?.pathname || '/dashboard';
 
   if (loading) {
     return (
@@ -39,7 +42,7 @@ function AuthRoute() {
   }
 
   if (user) {
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to={from} replace />;
   }
 
   return <AuthForm />;
@@ -69,12 +72,21 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/auth" element={<AuthRoute />} />
         <Route
-          path="/"
+          path="/dashboard"
           element={
             <RequireAuth>
               <Dashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/borrowers"
+          element={
+            <RequireAuth>
+              <Borrowers />
             </RequireAuth>
           }
         />
@@ -94,11 +106,9 @@ function App() {
             </RequireAuth>
           }
         />
-        {/* Catch all route - redirect to home */}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );
 }
 
-export default App;
+export default App
